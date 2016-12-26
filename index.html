@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<script>
+/*
+For the scrape spelling alphabet 
+url:https://tr.wikipedia.org/wiki/Heceleme_alfabesi
+in chrome-console (jquery from wikipedia-depends)
+*/
+
+/*
+var alphabet = {}; 
+var f = function (t,n){return $(t).find("td:nth-child("+n+")").text();};
+$(".wikitable tr:not(:first)").each(function(){
+	alphabet[f(this,2)] = {
+		"kara":f(this,3),
+		"deniz":f(this,4),
+		"nato":f(this,5),
+		"tdk":f(this,6)
+	};
+});
+console.log(JSON.stringify(alphabet));
+*/
+</script>
+
+<script type="text/javascript" id="extension">
+var abece = JSON.parse('{"A":{"kara":"Ahmet","deniz":"Aydın","nato":"Alfa","tdk":"Adana"},"B":{"kara":"Behçet","deniz":"Burak","nato":"Bravo","tdk":"Bolu"},"C":{"kara":"Cemal","deniz":"Cemâl","nato":"Charlie","tdk":"Ceyhan"},"Ç":{"kara":"Çetin","deniz":"","nato":"","tdk":"Çanakkale"},"D":{"kara":"Davut","deniz":"Deniz","nato":"Delta","tdk":"Denizli"},"E":{"kara":"Ekrem","deniz":"Engin","nato":"Echo","tdk":"Edirne"},"F":{"kara":"Fatih","deniz":"Felenk","nato":"Foxtrot","tdk":"Fatsa"},"G":{"kara":"Galip","deniz":"Gabya","nato":"Golf","tdk":"Giresun"},"Ğ":{"kara":"yumuşak ge","deniz":"","nato":"","tdk":""},"H":{"kara":"Hasan","deniz":"Halat","nato":"Hotel","tdk":"Hatay"},"I":{"kara":"Irmak","deniz":"","nato":"","tdk":"Isparta"},"İ":{"kara":"İrfan","deniz":"İstif","nato":"İndia","tdk":"İzmir"},"J":{"kara":"Jale","deniz":"Jâle","nato":"Juliet","tdk":"Jandarma"},"K":{"kara":"Kadri","deniz":"Kalyon","nato":"Kilo","tdk":"Kars"},"L":{"kara":"Lokum","deniz":"Levent","nato":"Lima","tdk":"Lüleburgaz"},"M":{"kara":"Mehmet","deniz":"Merih","nato":"Mike","tdk":"Muş"},"N":{"kara":"Nizam","deniz":"Neptün","nato":"November","tdk":"Niğde"},"O":{"kara":"Osman","deniz":"Oruç","nato":"Oscar","tdk":"Ordu"},"Ö":{"kara":"Ömer","deniz":"","nato":"","tdk":"Ödemiş"},"P":{"kara":"Poyraz","deniz":"Poyraz","nato":"Papa","tdk":"Polatlı"},"Q":{"kara":"Kömür","deniz":"Kömür","nato":"Quebec","tdk":""},"R":{"kara":"Rasim","deniz":"Reis","nato":"Romeo","tdk":"Rize"},"S":{"kara":"Serhat","deniz":"Seydi","nato":"Sierra","tdk":"Sinop"},"Ş":{"kara":"Şaban","deniz":"","nato":"","tdk":"Şırnak"},"T":{"kara":"Temel","deniz":"Turgut","nato":"Tango","tdk":"Tokat"},"U":{"kara":"Ufuk","deniz":"Umman","nato":"Uniform","tdk":"Uşak"},"Ü":{"kara":"Ümit","deniz":"","nato":"","tdk":"Ünye"},"V":{"kara":"Vehbi","deniz":"Vatan","nato":"Victor","tdk":"Van"},"W":{"kara":"İkive","deniz":"İkive","nato":"Whiskey","tdk":""},"X":{"kara":"İkiz","deniz":"İkiz","nato":"X-Ray","tdk":""},"Y":{"kara":"Yahya","deniz":"Yılmaz","nato":"Yankee","tdk":"Yozgat"},"Z":{"kara":"Zühtü","deniz":"Zuhâl","nato":"Zulu","tdk":"Zonguldak"}," ":{"kara":"-","deniz":"-","nato":"-","tdk":"-"}}');
+var raconsuzlar = {".": "Nokta"}; //!!!!!!!!!!!!BURAYA BAK BURAYA.......
+window.onload = function(){alert("merhaba");};
+String.prototype.hebele = function(container,std){
+	this.replace
+	var hebelenik = "",
+		std = typeof std === "undefined" ? "tdk" : std,
+		line = typeof container !== "undefined" ? ["<p>","<p>"] : ["","\n\r"];
+
+	this.split("").forEach(function(item){
+		var harf = abece[item.toUpperCase()];
+		hebelenik += harf[std] != "" ? line[0] + harf[std] + line[1] : item.toUpperCase() + " :P";
+	});
+
+	if(typeof container !== "undefined")
+	{
+		document.querySelector(container).innerHTML = hebelenik;
+	}
+	else if(typeof container === "undefined")
+	{
+		console.log(hebelenik);
+	}
+};
+</script>
+
+<script type="text/javascript">
+window.onload = function(){
+	var gevele = document.getElementById("gevele");
+
+	gevele.onkeyup = function(){
+		this.value.hebele(".gebe");
+	}
+
+	/*
+	ulu heceleyicimizi tarayıcının açtığı her sayfada çalışır hale getirelim.
+	bookmarka eklenecek link yapıyoruz
+	sayfada seçili metin : https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection
+	chrome bookmarklet link : http://stackoverflow.com/questions/18872679/function-as-google-chrome-bookmark
+	*/
+
+	var atfava = document.createElement("a");
+	var ext = encodeURI(document.getElementById("extension").innerHTML);
+	atfava.href ="javascript:(function(){"+ext+"document.getSelection().toString().hebele()})();";
+	atfava.text = "+ hebele";
+	atfava.title= "bunu sürükleyip bookmark çubuğuna bırak..";
+	document.body.appendChild(atfava);
+}
+
+</script>
+
+<input id="gevele">
+
+<div class="gebe">
+	
+</div>
+
+<style>
+.gebe p::first-letter:before{
+	width:200px;
+	position: relative;
+}
+.gebe p::first-letter { 
+    font-size: 200%;
+    color: #8A2BE2;
+}
+#gevele{
+	text-transform: uppercase;
+}
+</style>
+
+</body>
+</html>
