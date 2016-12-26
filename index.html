@@ -68,33 +68,55 @@ window.onload = function(){
 	chrome bookmarklet link : http://stackoverflow.com/questions/18872679/function-as-google-chrome-bookmark
 	*/
 
-	var atfava = document.createElement("a");
+	var atfava = document.getElementById("favLink");
 	var ext = encodeURI(document.getElementById("extension").innerHTML);
 	atfava.href ="javascript:(function(){"+ext+"document.getSelection().toString().hebele()})();";
-	atfava.text = "+ hebele";
-	atfava.title= "bunu sürükleyip bookmark çubuğuna bırak..";
-	document.body.appendChild(atfava);
 }
 
 </script>
-
-<input id="gevele">
-
-<div class="gebe">
-	
+<div class="kova">
+	<div>
+		<a id="favLink" title="bunu sürükleyip bookmark çubuğuna bırak..">
+			<img src="logo.png">
+		</a>
+	</div>
+	<div>
+		<input id="gevele" placeholder="neymiş o heceleyemediğin...">
+	</div>
+	<div class="gebe">
+		
+	</div>
 </div>
-
 <style>
-.gebe p::first-letter:before{
-	width:200px;
-	position: relative;
+body{background: whitesmoke;}
+.kova{
+	margin:0 auto;
+	width: 45%;
+	text-align: center;
+}
+.kova>div{margin: 50px 25px;}
+.kova img{max-width: }
+
+#gevele{
+	width: 96%;
+	padding: 2%;
+	border: none;
+	border-bottom: 2px dashed #008080;
+	background: none;
+}
+
+#gevele:focus,#gevele:active{
+	border: none;
+	border-bottom: 2px dashed tomato;
+}
+
+.gebe p{
+	line-height: auto;
+	text-align: left;
 }
 .gebe p::first-letter { 
     font-size: 200%;
     color: #8A2BE2;
-}
-#gevele{
-	text-transform: uppercase;
 }
 </style>
 
