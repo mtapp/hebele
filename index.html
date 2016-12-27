@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale=1.0" />
-	<title></title>
+	<title>heceleme servisi - :P</title>
 </head>
 <body>
 <script>
@@ -79,20 +79,33 @@ window.onload = function(){
 		nebule = document.getElementById("nebule"),
 		dehele = document.getElementById("dehele"),
 		atfava = document.getElementById("favLink"),
-		label = document.querySelectorAll("label"),
+		label = document.querySelectorAll("li"),
 		nerede = function(){return document.querySelector("[name=nerede]:checked")};
 
-	label.forEach(function(item){
-		item.onclick = function(item){console.log(item.previousSibling);gevele.value.hebele(".gebe",nerede().value)};
-	});
-	gevele.onkeyup = function(e){
-		console.log(e);
+
+	gevele.oninput = gevele.onkeyup = function(e){
+		e = typeof e === "undefined" ? new KeyboardEvent({key:""}) : e;
 		var key = e.keyCode || e.which;
 		if(key == 13)this.value = "";
 		
 		if(typeof String.fromCharCode(key) === "string")
-		this.value.hebele(".gebe",nerede().value);
+		{
+			window.location.hash = encodeURI(this.value);	
+			this.value.hebele(".gebe",nerede().value);
+		}
+
 	};
+	label.forEach(function(item){
+		item.onclick = function(item){
+			gevele.onkeyup();
+		};
+	});
+	
+	window.onhashchange = function(){
+		var h = window.location.hash.substr(1);
+		gevele.value = decodeURI(h);
+		gevele.onkeyup();
+	}();
 
 	nebule.onclick = function(){
 		document.getElementsByClassName('dehele')[0].classList.toggle('hide');
@@ -108,7 +121,7 @@ window.onload = function(){
 	*/
 
 	var ext = encodeURI(document.getElementById("extension").innerHTML);
-	atfava.href ="javascript:(function(){"+ext+"document.getSelection().toString().hebele();document.title='hebeledim'})();";
+	atfava.href ="javascript:(function(){"+ext+"document.getSelection().toString().hebele();})();";
 }
 </script>
 
