@@ -11,12 +11,15 @@ a{text-decoration: none;display: inline-block;}
 .kova{
 	margin:0 auto;
 	text-align: center;
-}
-.kova>div{
-	margin: 50px 0;
 	position: relative;
 }
-.kova .logo{float:left;max-width: 100%;}
+.kova>div{
+	margin: 20px 0;
+	position: relative;
+}
+
+.kova div.tepede{margin:50px 0 0 0;}
+.kova .logo{float:left;max-width: 100%;z-index: 10;position: relative;}
 
 #nebule{
 	position:relative;
@@ -35,9 +38,14 @@ a{text-decoration: none;display: inline-block;}
 #nebule:after{content:"?";}
 #nebule.active:after{content:"X";}
 
+.options{list-style: none;text-align: right;}
+.options li{display: inline-block;margin: 10px 5px;}
+.options input{position: absolute;visibility: hidden;}
+.options li input~label{color:#cecece;cursor: pointer;}
+.options li input~label:hover{color:#aaaaaa;}
+.options li input:checked~label{color:tomato;}
 
-.dehele{position: absolute;background: whitesmoke;transition: opacity .2s;}
-.dehele.active{opacity: 1;z-index: 2;}
+.dehele{background: whitesmoke;transition: opacity .2s;}
 .dehele p{
 	line-height: 1.3em;
 	font-size: 0.9em;
@@ -101,5 +109,4 @@ key{
 }
 @media screen and (min-width: 1024px){
 	.kova{max-width: 460px;}
-	.kova>div{margin: 50px 25px;}
 }

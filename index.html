@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0" />
 	<title></title>
 </head>
 <body>
@@ -26,39 +27,77 @@ $(".wikitable tr:not(:first)").each(function(){
 console.log(JSON.stringify(alphabet));
 */
 </script>
-
+<style type="text/css">.hide,.kova>div.hide{opacity: 0;height: 0;margin: 0;padding: 0;}</style>
 <script type="text/javascript" id="extension">
-var abece = JSON.parse('{"A":{"kara":"Ahmet","deniz":"Aydın","nato":"Alfa","tdk":"Adana"},"B":{"kara":"Behçet","deniz":"Burak","nato":"Bravo","tdk":"Bolu"},"C":{"kara":"Cemal","deniz":"Cemâl","nato":"Charlie","tdk":"Ceyhan"},"Ç":{"kara":"Çetin","deniz":"","nato":"","tdk":"Çanakkale"},"D":{"kara":"Davut","deniz":"Deniz","nato":"Delta","tdk":"Denizli"},"E":{"kara":"Ekrem","deniz":"Engin","nato":"Echo","tdk":"Edirne"},"F":{"kara":"Fatih","deniz":"Felenk","nato":"Foxtrot","tdk":"Fatsa"},"G":{"kara":"Galip","deniz":"Gabya","nato":"Golf","tdk":"Giresun"},"Ğ":{"kara":"yumuşak ge","deniz":"","nato":"","tdk":""},"H":{"kara":"Hasan","deniz":"Halat","nato":"Hotel","tdk":"Hatay"},"I":{"kara":"Irmak","deniz":"","nato":"","tdk":"Isparta"},"İ":{"kara":"İrfan","deniz":"İstif","nato":"İndia","tdk":"İzmir"},"J":{"kara":"Jale","deniz":"Jâle","nato":"Juliet","tdk":"Jandarma"},"K":{"kara":"Kadri","deniz":"Kalyon","nato":"Kilo","tdk":"Kars"},"L":{"kara":"Lokum","deniz":"Levent","nato":"Lima","tdk":"Lüleburgaz"},"M":{"kara":"Mehmet","deniz":"Merih","nato":"Mike","tdk":"Muş"},"N":{"kara":"Nizam","deniz":"Neptün","nato":"November","tdk":"Niğde"},"O":{"kara":"Osman","deniz":"Oruç","nato":"Oscar","tdk":"Ordu"},"Ö":{"kara":"Ömer","deniz":"","nato":"","tdk":"Ödemiş"},"P":{"kara":"Poyraz","deniz":"Poyraz","nato":"Papa","tdk":"Polatlı"},"Q":{"kara":"Kömür","deniz":"Kömür","nato":"Quebec","tdk":""},"R":{"kara":"Rasim","deniz":"Reis","nato":"Romeo","tdk":"Rize"},"S":{"kara":"Serhat","deniz":"Seydi","nato":"Sierra","tdk":"Sinop"},"Ş":{"kara":"Şaban","deniz":"","nato":"","tdk":"Şırnak"},"T":{"kara":"Temel","deniz":"Turgut","nato":"Tango","tdk":"Tokat"},"U":{"kara":"Ufuk","deniz":"Umman","nato":"Uniform","tdk":"Uşak"},"Ü":{"kara":"Ümit","deniz":"","nato":"","tdk":"Ünye"},"V":{"kara":"Vehbi","deniz":"Vatan","nato":"Victor","tdk":"Van"},"W":{"kara":"İkive","deniz":"İkive","nato":"Whiskey","tdk":""},"X":{"kara":"İkiz","deniz":"İkiz","nato":"X-Ray","tdk":""},"Y":{"kara":"Yahya","deniz":"Yılmaz","nato":"Yankee","tdk":"Yozgat"},"Z":{"kara":"Zühtü","deniz":"Zuhâl","nato":"Zulu","tdk":"Zonguldak"}," ":{"kara":"-","deniz":"-","nato":"-","tdk":"-"}}');
-var raconsuzlar = {".": "Nokta"}; //!!!!!!!!!!!!BURAYA BAK BURAYA.......
-window.onload = function(){alert("merhaba");};
 String.prototype.hebele = function(container,std){
-	this.replace
-	var hebelenik = "",
-		std = typeof std === "undefined" ? "tdk" : std,
-		line = typeof container !== "undefined" ? ["<p>","<p>"] : ["","\n\r"];
+	var raconsuzlar = new Proxy(
+		{".": "nokta",",":"virgül",";":"noktalı virgül",":":"iki nokta","@":"kuyruklu a","-":"kısa çizgi"," ":"boşluk"},
+		{get:function(target,name){
+			var n = name.replace(" ","/␣")+"("+target[name]+")";
+			return name in target 
+				? {"kara":n,"deniz":n,"nato":n,"tdk":n} 
+				: {"kara":name + " :P","deniz":name + " :P","nato":name + " :P","tdk":name + " :P"} ;
+		}}
+	);
+	/*
+	* If given char is not an object property then return itself
+	* url:https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+	*/
+	var abece = new Proxy(
+		JSON.parse('{"A":{"kara":"Ahmet","deniz":"Aydın","nato":"Alfa","tdk":"Adana"},"B":{"kara":"Behçet","deniz":"Burak","nato":"Bravo","tdk":"Bolu"},"C":{"kara":"Cemal","deniz":"Cemâl","nato":"Charlie","tdk":"Ceyhan"},"Ç":{"kara":"Çetin","deniz":"","nato":"","tdk":"Çanakkale"},"D":{"kara":"Davut","deniz":"Deniz","nato":"Delta","tdk":"Denizli"},"E":{"kara":"Ekrem","deniz":"Engin","nato":"Echo","tdk":"Edirne"},"F":{"kara":"Fatih","deniz":"Felenk","nato":"Foxtrot","tdk":"Fatsa"},"G":{"kara":"Galip","deniz":"Gabya","nato":"Golf","tdk":"Giresun"},"Ğ":{"kara":".[yumuşak ge]","deniz":".[yumuşak ge]","nato":"","tdk":".[yumuşak ge]"},"H":{"kara":"Hasan","deniz":"Halat","nato":"Hotel","tdk":"Hatay"},"I":{"kara":"Irmak","deniz":"","nato":"","tdk":"Isparta"},"İ":{"kara":"İrfan","deniz":"İstif","nato":"İndia","tdk":"İzmir"},"J":{"kara":"Jale","deniz":"Jâle","nato":"Juliet","tdk":"Jandarma"},"K":{"kara":"Kadri","deniz":"Kalyon","nato":"Kilo","tdk":"Kars"},"L":{"kara":"Lokum","deniz":"Levent","nato":"Lima","tdk":"Lüleburgaz"},"M":{"kara":"Mehmet","deniz":"Merih","nato":"Mike","tdk":"Muş"},"N":{"kara":"Nizam","deniz":"Neptün","nato":"November","tdk":"Niğde"},"O":{"kara":"Osman","deniz":"Oruç","nato":"Oscar","tdk":"Ordu"},"Ö":{"kara":"Ömer","deniz":"","nato":"","tdk":"Ödemiş"},"P":{"kara":"Poyraz","deniz":"Poyraz","nato":"Papa","tdk":"Polatlı"},"Q":{"kara":"Kömür","deniz":"Kömür","nato":"Quebec","tdk":""},"R":{"kara":"Rasim","deniz":"Reis","nato":"Romeo","tdk":"Rize"},"S":{"kara":"Serhat","deniz":"Seydi","nato":"Sierra","tdk":"Sinop"},"Ş":{"kara":"Şaban","deniz":"","nato":"","tdk":"Şırnak"},"T":{"kara":"Temel","deniz":"Turgut","nato":"Tango","tdk":"Tokat"},"U":{"kara":"Ufuk","deniz":"Umman","nato":"Uniform","tdk":"Uşak"},"Ü":{"kara":"Ümit","deniz":"","nato":"","tdk":"Ünye"},"V":{"kara":"Vehbi","deniz":"Vatan","nato":"Victor","tdk":"Van"},"W":{"kara":"İkive","deniz":"İkive","nato":"Whiskey","tdk":""},"X":{"kara":"İkiz","deniz":"İkiz","nato":"X-Ray","tdk":""},"Y":{"kara":"Yahya","deniz":"Yılmaz","nato":"Yankee","tdk":"Yozgat"},"Z":{"kara":"Zühtü","deniz":"Zuhâl","nato":"Zulu","tdk":"Zonguldak"}}'),
+		{get:function(target,name){return name in target ? target[name] : raconsuzlar[name]}}
+	);
+	var is_console = typeof container === "undefined";
+
+	var hebelenik = [],
+		std = typeof std === "undefined" ? "tdk" : std,//standard abece property
+		ln = is_console ? ["","\n\r"] : ["<p>","</p>"],//line plotter
+		fl = is_console ? ["%c","%c"] : ["<u>","</u>"];//first letter styling
 
 	this.split("").forEach(function(item){
-		var harf = abece[item.toUpperCase()];
-		hebelenik += harf[std] != "" ? line[0] + harf[std] + line[1] : item.toUpperCase() + " :P";
+		item = item.replace("i","İ").toUpperCase();
+		var harf = abece[item];
+		hebelenik.push(harf[std] != "" 
+			? ln[0] + fl[0] + item + fl[1] + harf[std].substr(1)+ln[1] 
+			: item.toUpperCase() + " :P");
 	});
 
-	if(typeof container !== "undefined")
+	if(is_console)
 	{
-		document.querySelector(container).innerHTML = hebelenik;
+		hebelenik.forEach(function(item){
+			console.log(item,"color:tomato;","color:none;");
+		});
 	}
-	else if(typeof container === "undefined")
-	{
-		console.log(hebelenik);
-	}
+	else if(document.querySelector(container))
+		document.querySelector(container).innerHTML = hebelenik.join("");
 };
 </script>
 
 <script type="text/javascript">
 window.onload = function(){
-	var gevele = document.getElementById("gevele");
+	var gevele = document.getElementById("gevele"),
+		nebule = document.getElementById("nebule"),
+		dehele = document.getElementById("dehele"),
+		atfava = document.getElementById("favLink"),
+		label = document.querySelectorAll("label"),
+		nerede = function(){return document.querySelector("[name=nerede]:checked")};
 
-	gevele.onkeyup = function(){
-		this.value.hebele(".gebe");
+	label.forEach(function(item){
+		item.onclick = function(item){console.log(item.previousSibling);gevele.value.hebele(".gebe",nerede().value)};
+	});
+	gevele.onkeyup = function(e){
+		console.log(e);
+		var key = e.keyCode || e.which;
+		if(key == 13)this.value = "";
+		
+		if(typeof String.fromCharCode(key) === "string")
+		this.value.hebele(".gebe",nerede().value);
+	};
+
+	nebule.onclick = function(){
+		document.getElementsByClassName('dehele')[0].classList.toggle('hide');
+		document.getElementsByClassName('elleme')[0].classList.toggle('hide');
+		document.getElementById('nebule').classList.toggle('active');
 	}
 
 	/*
@@ -68,57 +107,53 @@ window.onload = function(){
 	chrome bookmarklet link : http://stackoverflow.com/questions/18872679/function-as-google-chrome-bookmark
 	*/
 
-	var atfava = document.getElementById("favLink");
 	var ext = encodeURI(document.getElementById("extension").innerHTML);
-	atfava.href ="javascript:(function(){"+ext+"document.getSelection().toString().hebele()})();";
+	atfava.href ="javascript:(function(){"+ext+"document.getSelection().toString().hebele();document.title='hebeledim'})();";
 }
-
 </script>
+
 <div class="kova">
-	<div>
+	
+	<div class="tepede">
 		<a id="favLink" title="bunu sürükleyip bookmark çubuğuna bırak..">
-			<img src="./logo.png"/>
+			hebele
+			<img class="logo" alt="hebele" src="./logo.png"/>
 		</a>
+		<a id="nebule" title="bu nedir?" href="javascript:void(0)"></a>
+		<ul class="options">
+			<li><input type="radio" name="nerede" id="std1" value="tdk" checked><label for="std1">tdk</label></li>
+			<li><input type="radio" name="nerede" id="std2" value="kara"><label for="std2">kara</label></li>
+			<li><input type="radio" name="nerede" id="std3" value="deniz"><label for="std3">deniz</label></li>
+			<li><input type="radio" name="nerede" id="std4" value="nato"><label for="std4">nato</label></li>
+		</ul>
 	</div>
-	<div>
-		<input id="gevele" placeholder="neymiş o heceleyemediğin...">
+	
+
+	<div class="elleme">	
+		<input id="gevele" placeholder="neymiş o heceleyemediğin..." autofocus/>
+		<div class="gebe"></div>
 	</div>
-	<div class="gebe">
-		
+
+	<div class="dehele hide">
+		<h3>sayfa ne işe yarar?</h3>
+		<p>Metin kutusuna girileni heceler.</p>
+		<h3>kullanımı</h3>
+		<p class="ornek">profiterol</p>
+		<div class="hebelemece">
+			<p><u>P</u>olatlı</p><p><u>R</u>ize</p><p><u>O</u>rdu</p><p><u>F</u>atsa</p><p><u>İ</u>zmir</p><p><u>T</u>okat</p><p><u>E</u>dirne</p><p><u>R</u>ize</p><p><u>O</u>rdu</p><p><u>L</u>üleburgaz</p>
+		</div>
+		<h3>Heceleme Alfabesi</h3>
+		<p>
+		<small>Her harfe karşılık gelen ve o harf ile başlayan bir kelime, harfin karşı tarafa bildirilmesinde kullanılır.
+		Değişik diller için ülkeler veya organizasyonlarca standartlaşmış heceleme alfabeleri vardır. Bunlardan biri uluslararası havacılıkta kullanılan ve NATO tarafından kabul edilmiş heceleme alfabesidir. Bunun dışında millî maksatlar için de heceleme tabloları mevcuttur.
+		Özellikle kötü bir bağlantı üzerinden iletişim kurarken iki tarafın da aynı sistemi kullanması, anlaşılabilirliği arttırmak açısından önemlidir.
+		</small>
+		</p>
 	</div>
+	<div class="footer"><key>Enter</key> yazılanları siler.</footer>
 </div>
-<style>
-body{background: whitesmoke;}
-.kova{
-	margin:0 auto;
-	width: 45%;
-	text-align: center;
-}
-.kova>div{margin: 50px 25px;}
-.kova img{max-width: }
 
-#gevele{
-	width: 96%;
-	padding: 2%;
-	border: none;
-	border-bottom: 2px dashed #008080;
-	background: none;
-}
-
-#gevele:focus,#gevele:active{
-	border: none;
-	border-bottom: 2px dashed tomato;
-}
-
-.gebe p{
-	line-height: auto;
-	text-align: left;
-}
-.gebe p::first-letter { 
-    font-size: 200%;
-    color: #8A2BE2;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="main.css">
 
 </body>
 </html>
