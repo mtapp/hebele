@@ -35,8 +35,11 @@
 }</style>
 <script type="text/javascript" id="extension">
     String.prototype.hebele = function (container, std) {
+
+        //todo bu raconsuzlar natoda boyle değil ingilicce olmalı.
         var raconsuzlar = new Proxy(
             {
+//              todo !'^+%&/()=?_*\}][{$# Bunlar ozel karakter değilmi.
                 ".": "nokta",
                 ",": "virgül",
                 ";": "noktalı virgül",
@@ -58,6 +61,11 @@
          * If given char is not an object property then return itself
          * url:https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy
          */
+
+        //todo burda bir sıkıntı büyük küçük harf duyarlılığı yok
+        //todo sayı eet sayılar nasıl olacak şimdi
+        //todo abi mesele Qh0stM4N yazmak büyük kucuk garf onemli hemide cok onemli.
+
         var abece = new Proxy(
             {
                 "A": {"kara": "Ahmet", "deniz": "Aydın", "nato": "Alfa", "tdk": "Adana"},
@@ -120,6 +128,7 @@
         });
         //https://translate.google.com/translate_tts?ie=UTF-8&tl=tr-TR&client=tw-ob&q=asd
 
+        //todo nato secildiyse dil ingilizce secilmeli.
         urllik = "https://translate.google.com/translate_tts?ie=UTF-8&tl=tr-TR&client=tw-ob&q=" + encodeURI(urllik);
         sole.setAttribute('data-url', urllik);
 
@@ -162,6 +171,8 @@
             var key = e.keyCode || e.which;
             if (key == 13) this.value = "";
 
+//            todo gevelerken icerik bossa gevelenecek kelimeleri bosa suylemeye calismasin birseyler yazinca acili olsun sole dugmesi.
+
             if (typeof String.fromCharCode(key) === "string") {
                 window.location.hash = encodeURI(this.value);
                 this.value.hebele(".gebe", nerede().value);
@@ -190,6 +201,7 @@
             document.getElementById('nebule').classList.toggle('active');
         };
 
+        //todo eyi guzel hacida calismiyor bu.
         /*
          ulu heceleyicimizi tarayıcının açtığı her sayfada çalışır hale getirelim.
          bookmarka eklenecek link yapıyoruz
@@ -221,6 +233,8 @@
 
     <div class="elleme">
         <input id="gevele" placeholder="neymiş o heceleyemediğin..." autofocus/>
+
+        <!--todo Buraya bir parmak lazım resmen windows formdan fırlamış da buraya girmiş gibi duruyor eğreti otu mübarek-->
         <button id="sole" data-url="">Soyle Soyleyebiliyorsan</button>
         <div class="gebe"></div>
     </div>
