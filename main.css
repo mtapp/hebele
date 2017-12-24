@@ -1,78 +1,132 @@
 body {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background: whitesmoke;
-}
-a{text-decoration: none;display: inline-block;}
-.hidden{display: none;}
-
-.kova{
-	margin:0 auto;
-	text-align: center;
-	position: relative;
-}
-.kova>div{
-	margin: 20px 0;
-	position: relative;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: whitesmoke;
 }
 
-.kova div.tepede{margin:50px 0 0 0;}
-.kova .logo{float:left;max-width: 100%;z-index: 10;position: relative;}
-
-#nebule{
-	position:relative;
-	display: inline-block;
-	border-radius: 100%;
-	width:5px;
-	line-height: 5px;
-	font-size: 9px;
-	top: 15px;
-	padding: 5px;
-	border: 1px solid #ccc;
-	color:#3e3e3e;
-	cursor: pointer;
-}
-#nebule.active{color: tomato;background: #cecece;}
-#nebule:after{content:"?";}
-#nebule.active:after{content:"X";}
-
-.options{list-style: none;text-align: right;}
-.options li{display: inline-block;margin: 10px 5px;}
-.options input{position: absolute;visibility: hidden;}
-.options li input~label{color:#cecece;cursor: pointer;}
-.options li input~label:hover{color:#aaaaaa;}
-.options li input:checked~label{color:tomato;}
-
-.dehele{background: whitesmoke;transition: opacity .2s;}
-.dehele p{
-	line-height: 1.3em;
-	font-size: 0.9em;
-	text-align: left;
+a {
+    text-decoration: none;
+    display: inline-block;
 }
 
-#favLink{font-size: 0px;}
-
-#gevele,.ornek{
-	width: 96%;
-	padding: 2% 5px;
-	border: none;
-	border-bottom: 2px dashed #008080;
-	transition: border-bottom .2s;
-	background: none;
-	font-size: 1.2em;
+.hidden {
+    display: none;
 }
 
-#gevele:focus,#gevele:active,.ornek{
-	outline:none;
-	border-bottom: 2px dashed tomato;
+.kova {
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
 }
 
-.gebe p{
-	text-align: left;
+.kova > div {
+    margin: 20px 0;
+    position: relative;
 }
-.gebe p u,.hebelemece p u{ 
+
+.kova div.tepede {
+    margin: 50px 0 0 0;
+}
+
+.kova .logo {
+    float: left;
+    max-width: 100%;
+    z-index: 10;
+    position: relative;
+}
+
+#nebule {
+    position: relative;
+    display: inline-block;
+    border-radius: 100%;
+    width: 5px;
+    line-height: 5px;
+    font-size: 9px;
+    top: 15px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    color: #3e3e3e;
+    cursor: pointer;
+}
+
+#nebule.active {
+    color: tomato;
+    background: #cecece;
+}
+
+#nebule:after {
+    content: "?";
+}
+
+#nebule.active:after {
+    content: "X";
+}
+
+.options {
+    list-style: none;
+    text-align: right;
+}
+
+.options li {
+    display: inline-block;
+    margin: 10px 5px;
+}
+
+.options input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.options li input ~ label {
+    color: #cecece;
+    cursor: pointer;
+}
+
+.options li input ~ label:hover {
+    color: #aaaaaa;
+}
+
+.options li input:checked ~ label {
+    color: tomato;
+}
+
+.dehele {
+    background: whitesmoke;
+    transition: opacity .2s;
+}
+
+.dehele p {
+    line-height: 1.3em;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+#favLink {
+    font-size: 0;
+}
+
+#gevele, .ornek {
+    width: 96%;
+    padding: 2% 5px;
+    border: none;
+    border-bottom: 2px dashed #008080;
+    transition: border-bottom .2s;
+    background: none;
+    font-size: 1.2em;
+}
+
+#gevele:focus, #gevele:active, .ornek {
+    outline: none;
+    border-bottom: 2px dashed tomato;
+}
+
+.gebe p {
+    text-align: left;
+}
+
+.gebe p u, .hebelemece p u {
     text-decoration: none;
     width: 25px;
     font-weight: bold;
@@ -80,33 +134,37 @@ a{text-decoration: none;display: inline-block;}
 }
 
 .footer {
- 
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: #efefef;
-  text-align: center;
-  z-index: 1;
+
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+    z-index: 1;
 }
 
-key{
+key {
     font-family: Consolas, 'Liberation Mono', Courier, monospace;
     color: #333;
     background: #f8f8f8;
     border-radius: 3px;
     border: 1px solid #eaeaea;
-    margin: 0px 2px;
-    padding: 0px 5px;
+    margin: 0 2px;
+    padding: 0 5px;
     font-size: 12px;
 }
 
 ::selection {
-  background: #ffb7b7; /* WebKit/Blink Browsers */
+    background: #ffb7b7; /* WebKit/Blink Browsers */
 }
+
 ::-moz-selection {
-  background: #ffb7b7; /* Gecko Browsers */
+    background: #ffb7b7; /* Gecko Browsers */
 }
-@media screen and (min-width: 1024px){
-	.kova{max-width: 460px;}
+
+@media screen and (min-width: 1024px) {
+    .kova {
+        max-width: 460px;
+    }
 }
