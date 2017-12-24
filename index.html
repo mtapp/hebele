@@ -1,172 +1,206 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0" />
-	<title>heceleme servisi - :P</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0"/>
+    <title>heceleme servisi - :P</title>
 </head>
 <body>
 <script>
-/*
-For the scrape spelling alphabet 
-url:https://tr.wikipedia.org/wiki/Heceleme_alfabesi
-in chrome-console (jquery from wikipedia-depends)
-*/
+    /*
+     For the scrape spelling alphabet
+     url:https://tr.wikipedia.org/wiki/Heceleme_alfabesi
+     in chrome-console (jquery from wikipedia-depends)
+     */
 
-/*
-var alphabet = {}; 
-var f = function (t,n){return $(t).find("td:nth-child("+n+")").text();};
-$(".wikitable tr:not(:first)").each(function(){
-	alphabet[f(this,2)] = {
-		"kara":f(this,3),
-		"deniz":f(this,4),
-		"nato":f(this,5),
-		"tdk":f(this,6)
-	};
-});
-console.log(JSON.stringify(alphabet));
-*/
+    /*
+     var alphabet = {};
+     var f = function (t,n){return $(t).find("td:nth-child("+n+")").text();};
+     $(".wikitable tr:not(:first)").each(function(){
+     alphabet[f(this,2)] = {
+     "kara":f(this,3),
+     "deniz":f(this,4),
+     "nato":f(this,5),
+     "tdk":f(this,6)
+     };
+     });
+     console.log(JSON.stringify(alphabet));
+     */
 </script>
-<style type="text/css">.hide,.kova>div.hide{opacity: 0;height: 0;margin: 0;padding: 0;}</style>
+<style type="text/css">.hide, .kova > div.hide {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}</style>
 <script type="text/javascript" id="extension">
-String.prototype.hebele = function(container,std){
-	var raconsuzlar = new Proxy(
-		{".": "nokta",",":"virgül",";":"noktalı virgül",":":"iki nokta","@":"kuyruklu a","-":"kısa çizgi"," ":"boşluk"},
-		{get:function(target,name){
-			var n = name.replace(" ","/␣")+"("+target[name]+")";
-			return name in target 
-				? {"kara":n,"deniz":n,"nato":n,"tdk":n} 
-				: {"kara":name + " :P","deniz":name + " :P","nato":name + " :P","tdk":name + " :P"} ;
-		}}
-	);
-	/*
-	* If given char is not an object property then return itself
-	* url:https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy
-	*/
-	var abece = new Proxy(
-		JSON.parse('{"A":{"kara":"Ahmet","deniz":"Aydın","nato":"Alfa","tdk":"Adana"},"B":{"kara":"Behçet","deniz":"Burak","nato":"Bravo","tdk":"Bolu"},"C":{"kara":"Cemal","deniz":"Cemâl","nato":"Charlie","tdk":"Ceyhan"},"Ç":{"kara":"Çetin","deniz":"","nato":"","tdk":"Çanakkale"},"D":{"kara":"Davut","deniz":"Deniz","nato":"Delta","tdk":"Denizli"},"E":{"kara":"Ekrem","deniz":"Engin","nato":"Echo","tdk":"Edirne"},"F":{"kara":"Fatih","deniz":"Felenk","nato":"Foxtrot","tdk":"Fatsa"},"G":{"kara":"Galip","deniz":"Gabya","nato":"Golf","tdk":"Giresun"},"Ğ":{"kara":".[yumuşak ge]","deniz":".[yumuşak ge]","nato":"","tdk":".[yumuşak ge]"},"H":{"kara":"Hasan","deniz":"Halat","nato":"Hotel","tdk":"Hatay"},"I":{"kara":"Irmak","deniz":"","nato":"","tdk":"Isparta"},"İ":{"kara":"İrfan","deniz":"İstif","nato":"İndia","tdk":"İzmir"},"J":{"kara":"Jale","deniz":"Jâle","nato":"Juliet","tdk":"Jandarma"},"K":{"kara":"Kadri","deniz":"Kalyon","nato":"Kilo","tdk":"Kars"},"L":{"kara":"Lokum","deniz":"Levent","nato":"Lima","tdk":"Lüleburgaz"},"M":{"kara":"Mehmet","deniz":"Merih","nato":"Mike","tdk":"Muş"},"N":{"kara":"Nizam","deniz":"Neptün","nato":"November","tdk":"Niğde"},"O":{"kara":"Osman","deniz":"Oruç","nato":"Oscar","tdk":"Ordu"},"Ö":{"kara":"Ömer","deniz":"","nato":"","tdk":"Ödemiş"},"P":{"kara":"Poyraz","deniz":"Poyraz","nato":"Papa","tdk":"Polatlı"},"Q":{"kara":"Kömür","deniz":"Kömür","nato":"Quebec","tdk":""},"R":{"kara":"Rasim","deniz":"Reis","nato":"Romeo","tdk":"Rize"},"S":{"kara":"Serhat","deniz":"Seydi","nato":"Sierra","tdk":"Sinop"},"Ş":{"kara":"Şaban","deniz":"","nato":"","tdk":"Şırnak"},"T":{"kara":"Temel","deniz":"Turgut","nato":"Tango","tdk":"Tokat"},"U":{"kara":"Ufuk","deniz":"Umman","nato":"Uniform","tdk":"Uşak"},"Ü":{"kara":"Ümit","deniz":"","nato":"","tdk":"Ünye"},"V":{"kara":"Vehbi","deniz":"Vatan","nato":"Victor","tdk":"Van"},"W":{"kara":"İkive","deniz":"İkive","nato":"Whiskey","tdk":""},"X":{"kara":"İkiz","deniz":"İkiz","nato":"X-Ray","tdk":""},"Y":{"kara":"Yahya","deniz":"Yılmaz","nato":"Yankee","tdk":"Yozgat"},"Z":{"kara":"Zühtü","deniz":"Zuhâl","nato":"Zulu","tdk":"Zonguldak"}}'),
-		{get:function(target,name){return name in target ? target[name] : raconsuzlar[name]}}
-	);
-	var is_console = typeof container === "undefined";
+    String.prototype.hebele = function (container, std) {
+        var raconsuzlar = new Proxy(
+            {
+                ".": "nokta",
+                ",": "virgül",
+                ";": "noktalı virgül",
+                ":": "iki nokta",
+                "@": "kuyruklu a",
+                "-": "kısa çizgi",
+                " ": "boşluk"
+            },
+            {
+                get: function (target, name) {
+                    var n = name.replace(" ", "/␣") + "(" + target[name] + ")";
+                    return name in target
+                        ? {"kara": n, "deniz": n, "nato": n, "tdk": n}
+                        : {"kara": name + " :P", "deniz": name + " :P", "nato": name + " :P", "tdk": name + " :P"};
+                }
+            }
+        );
+        /*
+         * If given char is not an object property then return itself
+         * url:https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+         */
+        var abece = new Proxy(
+            JSON.parse('{"A":{"kara":"Ahmet","deniz":"Aydın","nato":"Alfa","tdk":"Adana"},"B":{"kara":"Behçet","deniz":"Burak","nato":"Bravo","tdk":"Bolu"},"C":{"kara":"Cemal","deniz":"Cemâl","nato":"Charlie","tdk":"Ceyhan"},"Ç":{"kara":"Çetin","deniz":"","nato":"","tdk":"Çanakkale"},"D":{"kara":"Davut","deniz":"Deniz","nato":"Delta","tdk":"Denizli"},"E":{"kara":"Ekrem","deniz":"Engin","nato":"Echo","tdk":"Edirne"},"F":{"kara":"Fatih","deniz":"Felenk","nato":"Foxtrot","tdk":"Fatsa"},"G":{"kara":"Galip","deniz":"Gabya","nato":"Golf","tdk":"Giresun"},"Ğ":{"kara":".[yumuşak ge]","deniz":".[yumuşak ge]","nato":"","tdk":".[yumuşak ge]"},"H":{"kara":"Hasan","deniz":"Halat","nato":"Hotel","tdk":"Hatay"},"I":{"kara":"Irmak","deniz":"","nato":"","tdk":"Isparta"},"İ":{"kara":"İrfan","deniz":"İstif","nato":"İndia","tdk":"İzmir"},"J":{"kara":"Jale","deniz":"Jâle","nato":"Juliet","tdk":"Jandarma"},"K":{"kara":"Kadri","deniz":"Kalyon","nato":"Kilo","tdk":"Kars"},"L":{"kara":"Lokum","deniz":"Levent","nato":"Lima","tdk":"Lüleburgaz"},"M":{"kara":"Mehmet","deniz":"Merih","nato":"Mike","tdk":"Muş"},"N":{"kara":"Nizam","deniz":"Neptün","nato":"November","tdk":"Niğde"},"O":{"kara":"Osman","deniz":"Oruç","nato":"Oscar","tdk":"Ordu"},"Ö":{"kara":"Ömer","deniz":"","nato":"","tdk":"Ödemiş"},"P":{"kara":"Poyraz","deniz":"Poyraz","nato":"Papa","tdk":"Polatlı"},"Q":{"kara":"Kömür","deniz":"Kömür","nato":"Quebec","tdk":""},"R":{"kara":"Rasim","deniz":"Reis","nato":"Romeo","tdk":"Rize"},"S":{"kara":"Serhat","deniz":"Seydi","nato":"Sierra","tdk":"Sinop"},"Ş":{"kara":"Şaban","deniz":"","nato":"","tdk":"Şırnak"},"T":{"kara":"Temel","deniz":"Turgut","nato":"Tango","tdk":"Tokat"},"U":{"kara":"Ufuk","deniz":"Umman","nato":"Uniform","tdk":"Uşak"},"Ü":{"kara":"Ümit","deniz":"","nato":"","tdk":"Ünye"},"V":{"kara":"Vehbi","deniz":"Vatan","nato":"Victor","tdk":"Van"},"W":{"kara":"İkive","deniz":"İkive","nato":"Whiskey","tdk":""},"X":{"kara":"İkiz","deniz":"İkiz","nato":"X-Ray","tdk":""},"Y":{"kara":"Yahya","deniz":"Yılmaz","nato":"Yankee","tdk":"Yozgat"},"Z":{"kara":"Zühtü","deniz":"Zuhâl","nato":"Zulu","tdk":"Zonguldak"}}'),
+            {
+                get: function (target, name) {
+                    return name in target ? target[name] : raconsuzlar[name]
+                }
+            }
+        );
+        var is_console = typeof container === "undefined";
 
-	var hebelenik = [],
-		std = typeof std === "undefined" ? "tdk" : std,//standard abece property
-		ln = is_console ? ["","\n\r"] : ["<p>","</p>"],//line plotter
-		fl = is_console ? ["%c","%c"] : ["<u>","</u>"];//first letter styling
+        var hebelenik = [],
+            std = typeof std === "undefined" ? "tdk" : std,//standard abece property
+            ln = is_console ? ["", "\n\r"] : ["<p>", "</p>"],//line plotter
+            fl = is_console ? ["%c", "%c"] : ["<u>", "</u>"];//first letter styling
 
-	this.split("").forEach(function(item){
-		item = item.replace("i","İ").toUpperCase();
-		var harf = abece[item];
-		hebelenik.push(harf[std] != "" 
-			? ln[0] + fl[0] + item + fl[1] + harf[std].substr(1)+ln[1] 
-			: ln[0] + fl[0] + item.toUpperCase() + fl[1] + " :P" +ln[1]);
-	});
+        this.split("").forEach(function (item) {
+            item = item.replace("i", "İ").toUpperCase();
+            var harf = abece[item];
+            hebelenik.push(harf[std] != ""
+                ? ln[0] + fl[0] + item + fl[1] + harf[std].substr(1) + ln[1]
+                : ln[0] + fl[0] + item.toUpperCase() + fl[1] + " :P" + ln[1]);
+        });
 
-	if(is_console)
-	{
-		hebelenik.forEach(function(item){
-			console.log(item,"color:tomato;","color:none;");
-		});
-	}
-	else if(document.querySelector(container))
-		document.querySelector(container).innerHTML = hebelenik.join("");
-};
+        if (is_console) {
+            hebelenik.forEach(function (item) {
+                console.log(item, "color:tomato;", "color:none;");
+            });
+        }
+        else if (document.querySelector(container))
+            document.querySelector(container).innerHTML = hebelenik.join("");
+    };
 </script>
 
 <script type="text/javascript">
-window.onload = function(){
-	var gevele = document.getElementById("gevele"),
-		nebule = document.getElementById("nebule"),
-		dehele = document.getElementById("dehele"),
-		atfava = document.getElementById("favLink"),
-		label = document.querySelectorAll("li"),
-		nerede = function(){return document.querySelector("[name=nerede]:checked")};
+    window.onload = function () {
+        var gevele = document.getElementById("gevele"),
+            nebule = document.getElementById("nebule"),
+            dehele = document.getElementById("dehele"),
+            atfava = document.getElementById("favLink"),
+            label = document.querySelectorAll("li"),
+            nerede = function () {
+                return document.querySelector("[name=nerede]:checked")
+            };
 
 
-	gevele.oninput = gevele.onkeyup = function(e){
-		e = typeof e === "undefined" ? new KeyboardEvent({key:""}) : e;
-		var key = e.keyCode || e.which;
-		if(key == 13)this.value = "";
-		
-		if(typeof String.fromCharCode(key) === "string")
-		{
-			window.location.hash = encodeURI(this.value);	
-			this.value.hebele(".gebe",nerede().value);
-		}
+        gevele.oninput = gevele.onkeyup = function (e) {
+            e = typeof e === "undefined" ? new KeyboardEvent({key: ""}) : e;
+            var key = e.keyCode || e.which;
+            if (key == 13) this.value = "";
 
-	};
-	label.forEach(function(item){
-		item.onclick = function(item){
-			gevele.onkeyup();
-		};
-	});
-	
-	window.onhashchange = function(){
-		var h = window.location.hash.substr(1);
-		gevele.value = decodeURI(h);
-		gevele.onkeyup();
-	}();
+            if (typeof String.fromCharCode(key) === "string") {
+                window.location.hash = encodeURI(this.value);
+                this.value.hebele(".gebe", nerede().value);
+            }
 
-	nebule.onclick = function(){
-		document.getElementsByClassName('dehele')[0].classList.toggle('hide');
-		document.getElementsByClassName('elleme')[0].classList.toggle('hide');
-		document.getElementById('nebule').classList.toggle('active');
-	}
+        };
+        label.forEach(function (item) {
+            item.onclick = function (item) {
+                gevele.onkeyup();
+            };
+        });
 
-	/*
-	ulu heceleyicimizi tarayıcının açtığı her sayfada çalışır hale getirelim.
-	bookmarka eklenecek link yapıyoruz
-	sayfada seçili metin : https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection
-	chrome bookmarklet link : http://stackoverflow.com/questions/18872679/function-as-google-chrome-bookmark
-	*/
+        window.onhashchange = function () {
+            var h = window.location.hash.substr(1);
+            gevele.value = decodeURI(h);
+            gevele.onkeyup();
+        }();
 
-	var ext = encodeURI(document.getElementById("extension").innerHTML);
-	atfava.href ="javascript:(function(){"+ext+"document.getSelection().toString().hebele();})();";
-}
+        nebule.onclick = function () {
+            document.getElementsByClassName('dehele')[0].classList.toggle('hide');
+            document.getElementsByClassName('elleme')[0].classList.toggle('hide');
+            document.getElementById('nebule').classList.toggle('active');
+        }
+
+        /*
+         ulu heceleyicimizi tarayıcının açtığı her sayfada çalışır hale getirelim.
+         bookmarka eklenecek link yapıyoruz
+         sayfada seçili metin : https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection
+         chrome bookmarklet link : http://stackoverflow.com/questions/18872679/function-as-google-chrome-bookmark
+         */
+
+        var ext = encodeURI(document.getElementById("extension").innerHTML);
+        atfava.href = "javascript:(function(){" + ext + "document.getSelection().toString().hebele();})();";
+    }
 </script>
 
 <div class="kova">
-	
-	<div class="tepede">
-		<a id="favLink" title="bunu sürükleyip bookmark çubuğuna bırak..">
-			hebele
-			<img class="logo" alt="hebele" src="./logo.png"/>
-		</a>
-		<a id="nebule" title="bu nedir?" href="javascript:void(0)"></a>
-		<ul class="options">
-			<li><input type="radio" name="nerede" id="std1" value="tdk" checked><label for="std1">tdk</label></li>
-			<li><input type="radio" name="nerede" id="std2" value="kara"><label for="std2">kara</label></li>
-			<li><input type="radio" name="nerede" id="std3" value="deniz"><label for="std3">deniz</label></li>
-			<li><input type="radio" name="nerede" id="std4" value="nato"><label for="std4">nato</label></li>
-		</ul>
-	</div>
-	
 
-	<div class="elleme">	
-		<input id="gevele" placeholder="neymiş o heceleyemediğin..." autofocus/>
-		<div class="gebe"></div>
-	</div>
+    <div class="tepede">
+        <a id="favLink" title="bunu sürükleyip bookmark çubuğuna bırak..">
+            hebele
+            <img class="logo" alt="hebele" src="./logo.png"/>
+        </a>
+        <a id="nebule" title="bu nedir?" href="javascript:void(0)"></a>
+        <ul class="options">
+            <li><input type="radio" name="nerede" id="std1" value="tdk" checked><label for="std1">tdk</label></li>
+            <li><input type="radio" name="nerede" id="std2" value="kara"><label for="std2">kara</label></li>
+            <li><input type="radio" name="nerede" id="std3" value="deniz"><label for="std3">deniz</label></li>
+            <li><input type="radio" name="nerede" id="std4" value="nato"><label for="std4">nato</label></li>
+        </ul>
+    </div>
 
-	<div class="dehele hide">
-		<h3>sayfa ne işe yarar?</h3>
-		<p>Metin kutusuna girileni heceler.</p>
-		<h3>kullanımı</h3>
-		<p class="ornek">profiterol</p>
-		<div class="hebelemece">
-			<p><u>P</u>olatlı</p><p><u>R</u>ize</p><p><u>O</u>rdu</p><p><u>F</u>atsa</p><p><u>İ</u>zmir</p><p><u>T</u>okat</p><p><u>E</u>dirne</p><p><u>R</u>ize</p><p><u>O</u>rdu</p><p><u>L</u>üleburgaz</p>
-		</div>
-		<h3>Heceleme Alfabesi</h3>
-		<p>
-		<small>Her harfe karşılık gelen ve o harf ile başlayan bir kelime, harfin karşı tarafa bildirilmesinde kullanılır.
-		Değişik diller için ülkeler veya organizasyonlarca standartlaşmış heceleme alfabeleri vardır. Bunlardan biri uluslararası havacılıkta kullanılan ve NATO tarafından kabul edilmiş heceleme alfabesidir. Bunun dışında millî maksatlar için de heceleme tabloları mevcuttur.
-		Özellikle kötü bir bağlantı üzerinden iletişim kurarken iki tarafın da aynı sistemi kullanması, anlaşılabilirliği arttırmak açısından önemlidir.
-		</small>
-		</p>
-	</div>
-	<div class="footer"><key>Enter</key> yazılanları siler.</footer>
-</div>
 
-<link rel="stylesheet" type="text/css" href="main.css">
+    <div class="elleme">
+        <input id="gevele" placeholder="neymiş o heceleyemediğin..." autofocus/>
+        <div class="gebe"></div>
+    </div>
+
+    <div class="dehele hide">
+        <h3>sayfa ne işe yarar?</h3>
+        <p>Metin kutusuna girileni heceler.</p>
+        <h3>kullanımı</h3>
+        <p class="ornek">profiterol</p>
+        <div class="hebelemece">
+            <p><u>P</u>olatlı</p>
+            <p><u>R</u>ize</p>
+            <p><u>O</u>rdu</p>
+            <p><u>F</u>atsa</p>
+            <p><u>İ</u>zmir</p>
+            <p><u>T</u>okat</p>
+            <p><u>E</u>dirne</p>
+            <p><u>R</u>ize</p>
+            <p><u>O</u>rdu</p>
+            <p><u>L</u>üleburgaz</p>
+        </div>
+        <h3>Heceleme Alfabesi</h3>
+        <p>
+            <small>Her harfe karşılık gelen ve o harf ile başlayan bir kelime, harfin karşı tarafa bildirilmesinde
+                kullanılır.
+                Değişik diller için ülkeler veya organizasyonlarca standartlaşmış heceleme alfabeleri vardır. Bunlardan
+                biri uluslararası havacılıkta kullanılan ve NATO tarafından kabul edilmiş heceleme alfabesidir. Bunun
+                dışında millî maksatlar için de heceleme tabloları mevcuttur.
+                Özellikle kötü bir bağlantı üzerinden iletişim kurarken iki tarafın da aynı sistemi kullanması,
+                anlaşılabilirliği arttırmak açısından önemlidir.
+            </small>
+        </p>
+    </div>
+    <div class="footer">
+        <key>Enter</key>
+        yazılanları siler.</footer>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
 
 </body>
 </html>
