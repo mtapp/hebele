@@ -59,7 +59,40 @@
          * url:https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy
          */
         var abece = new Proxy(
-            JSON.parse('{"A":{"kara":"Ahmet","deniz":"Aydın","nato":"Alfa","tdk":"Adana"},"B":{"kara":"Behçet","deniz":"Burak","nato":"Bravo","tdk":"Bolu"},"C":{"kara":"Cemal","deniz":"Cemâl","nato":"Charlie","tdk":"Ceyhan"},"Ç":{"kara":"Çetin","deniz":"","nato":"","tdk":"Çanakkale"},"D":{"kara":"Davut","deniz":"Deniz","nato":"Delta","tdk":"Denizli"},"E":{"kara":"Ekrem","deniz":"Engin","nato":"Echo","tdk":"Edirne"},"F":{"kara":"Fatih","deniz":"Felenk","nato":"Foxtrot","tdk":"Fatsa"},"G":{"kara":"Galip","deniz":"Gabya","nato":"Golf","tdk":"Giresun"},"Ğ":{"kara":".[yumuşak ge]","deniz":".[yumuşak ge]","nato":"","tdk":".[yumuşak ge]"},"H":{"kara":"Hasan","deniz":"Halat","nato":"Hotel","tdk":"Hatay"},"I":{"kara":"Irmak","deniz":"","nato":"","tdk":"Isparta"},"İ":{"kara":"İrfan","deniz":"İstif","nato":"İndia","tdk":"İzmir"},"J":{"kara":"Jale","deniz":"Jâle","nato":"Juliet","tdk":"Jandarma"},"K":{"kara":"Kadri","deniz":"Kalyon","nato":"Kilo","tdk":"Kars"},"L":{"kara":"Lokum","deniz":"Levent","nato":"Lima","tdk":"Lüleburgaz"},"M":{"kara":"Mehmet","deniz":"Merih","nato":"Mike","tdk":"Muş"},"N":{"kara":"Nizam","deniz":"Neptün","nato":"November","tdk":"Niğde"},"O":{"kara":"Osman","deniz":"Oruç","nato":"Oscar","tdk":"Ordu"},"Ö":{"kara":"Ömer","deniz":"","nato":"","tdk":"Ödemiş"},"P":{"kara":"Poyraz","deniz":"Poyraz","nato":"Papa","tdk":"Polatlı"},"Q":{"kara":"Kömür","deniz":"Kömür","nato":"Quebec","tdk":""},"R":{"kara":"Rasim","deniz":"Reis","nato":"Romeo","tdk":"Rize"},"S":{"kara":"Serhat","deniz":"Seydi","nato":"Sierra","tdk":"Sinop"},"Ş":{"kara":"Şaban","deniz":"","nato":"","tdk":"Şırnak"},"T":{"kara":"Temel","deniz":"Turgut","nato":"Tango","tdk":"Tokat"},"U":{"kara":"Ufuk","deniz":"Umman","nato":"Uniform","tdk":"Uşak"},"Ü":{"kara":"Ümit","deniz":"","nato":"","tdk":"Ünye"},"V":{"kara":"Vehbi","deniz":"Vatan","nato":"Victor","tdk":"Van"},"W":{"kara":"İkive","deniz":"İkive","nato":"Whiskey","tdk":""},"X":{"kara":"İkiz","deniz":"İkiz","nato":"X-Ray","tdk":""},"Y":{"kara":"Yahya","deniz":"Yılmaz","nato":"Yankee","tdk":"Yozgat"},"Z":{"kara":"Zühtü","deniz":"Zuhâl","nato":"Zulu","tdk":"Zonguldak"}}'),
+            {
+                "A": {"kara": "Ahmet", "deniz": "Aydın", "nato": "Alfa", "tdk": "Adana"},
+                "B": {"kara": "Behçet", "deniz": "Burak", "nato": "Bravo", "tdk": "Bolu"},
+                "C": {"kara": "Cemal", "deniz": "Cemâl", "nato": "Charlie", "tdk": "Ceyhan"},
+                "Ç": {"kara": "Çetin", "deniz": "", "nato": "", "tdk": "Çanakkale"},
+                "D": {"kara": "Davut", "deniz": "Deniz", "nato": "Delta", "tdk": "Denizli"},
+                "E": {"kara": "Ekrem", "deniz": "Engin", "nato": "Echo", "tdk": "Edirne"},
+                "F": {"kara": "Fatih", "deniz": "Felenk", "nato": "Foxtrot", "tdk": "Fatsa"},
+                "G": {"kara": "Galip", "deniz": "Gabya", "nato": "Golf", "tdk": "Giresun"},
+                "Ğ": {"kara": ".[yumuşak ge]", "deniz": ".[yumuşak ge]", "nato": "", "tdk": ".[yumuşak ge]"},
+                "H": {"kara": "Hasan", "deniz": "Halat", "nato": "Hotel", "tdk": "Hatay"},
+                "I": {"kara": "Irmak", "deniz": "", "nato": "", "tdk": "Isparta"},
+                "İ": {"kara": "İrfan", "deniz": "İstif", "nato": "İndia", "tdk": "İzmir"},
+                "J": {"kara": "Jale", "deniz": "Jâle", "nato": "Juliet", "tdk": "Jandarma"},
+                "K": {"kara": "Kadri", "deniz": "Kalyon", "nato": "Kilo", "tdk": "Kars"},
+                "L": {"kara": "Lokum", "deniz": "Levent", "nato": "Lima", "tdk": "Lüleburgaz"},
+                "M": {"kara": "Mehmet", "deniz": "Merih", "nato": "Mike", "tdk": "Muş"},
+                "N": {"kara": "Nizam", "deniz": "Neptün", "nato": "November", "tdk": "Niğde"},
+                "O": {"kara": "Osman", "deniz": "Oruç", "nato": "Oscar", "tdk": "Ordu"},
+                "Ö": {"kara": "Ömer", "deniz": "", "nato": "", "tdk": "Ödemiş"},
+                "P": {"kara": "Poyraz", "deniz": "Poyraz", "nato": "Papa", "tdk": "Polatlı"},
+                "Q": {"kara": "Kömür", "deniz": "Kömür", "nato": "Quebec", "tdk": ""},
+                "R": {"kara": "Rasim", "deniz": "Reis", "nato": "Romeo", "tdk": "Rize"},
+                "S": {"kara": "Serhat", "deniz": "Seydi", "nato": "Sierra", "tdk": "Sinop"},
+                "Ş": {"kara": "Şaban", "deniz": "", "nato": "", "tdk": "Şırnak"},
+                "T": {"kara": "Temel", "deniz": "Turgut", "nato": "Tango", "tdk": "Tokat"},
+                "U": {"kara": "Ufuk", "deniz": "Umman", "nato": "Uniform", "tdk": "Uşak"},
+                "Ü": {"kara": "Ümit", "deniz": "", "nato": "", "tdk": "Ünye"},
+                "V": {"kara": "Vehbi", "deniz": "Vatan", "nato": "Victor", "tdk": "Van"},
+                "W": {"kara": "İkive", "deniz": "İkive", "nato": "Whiskey", "tdk": ""},
+                "X": {"kara": "İkiz", "deniz": "İkiz", "nato": "X-Ray", "tdk": ""},
+                "Y": {"kara": "Yahya", "deniz": "Yılmaz", "nato": "Yankee", "tdk": "Yozgat"},
+                "Z": {"kara": "Zühtü", "deniz": "Zuhâl", "nato": "Zulu", "tdk": "Zonguldak"}
+            },
             {
                 get: function (target, name) {
                     return name in target ? target[name] : raconsuzlar[name]
@@ -130,7 +163,7 @@
             document.getElementsByClassName('dehele')[0].classList.toggle('hide');
             document.getElementsByClassName('elleme')[0].classList.toggle('hide');
             document.getElementById('nebule').classList.toggle('active');
-        }
+        };
 
         /*
          ulu heceleyicimizi tarayıcının açtığı her sayfada çalışır hale getirelim.
@@ -199,8 +232,9 @@
         <key>Enter</key>
         yazılanları siler.</footer>
     </div>
+</div>
 
-    <link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" type="text/css" href="main.css">
 
 </body>
 </html>
