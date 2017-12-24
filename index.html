@@ -114,6 +114,16 @@
                 : ln[0] + fl[0] + item.toUpperCase() + fl[1] + " :P" + ln[1]);
         });
 
+        var urllik = "";
+        this.toString().split(" ").forEach(function (item) {
+            urllik += item + "+";
+        });
+        //https://translate.google.com/translate_tts?ie=UTF-8&tl=tr-TR&client=tw-ob&q=asd
+
+        urllik = "https://translate.google.com/translate_tts?ie=UTF-8&tl=tr-TR&client=tw-ob&q=" + encodeURI(urllik);
+        sole.setAttribute('data-url', urllik);
+
+
         if (is_console) {
             hebelenik.forEach(function (item) {
                 console.log(item, "color:tomato;", "color:none;");
@@ -130,9 +140,20 @@
             nebule = document.getElementById("nebule"),
             dehele = document.getElementById("dehele"),
             atfava = document.getElementById("favLink"),
+            sole = document.getElementById("sole"),
             label = document.querySelectorAll("li"),
             nerede = function () {
                 return document.querySelector("[name=nerede]:checked")
+            },
+            calKekeCal = function () {
+
+                document.getElementById('yerlestir').innerHTML =
+                    '<embed src="' + sole.getAttribute('data-url') +
+                    '" width="180" height="90" loop="false" autostart="true" hidden="true" />';
+
+//                nie 404 verdin ki sen ne guzel calismaliydin.
+//                var audio = new Audio(sole.getAttribute('data-url'));
+//                audio.play();
             };
 
 
@@ -158,6 +179,10 @@
             gevele.value = decodeURI(h);
             gevele.onkeyup();
         }();
+
+        sole.onclick = function () {
+            calKekeCal();
+        };
 
         nebule.onclick = function () {
             document.getElementsByClassName('dehele')[0].classList.toggle('hide');
@@ -196,6 +221,7 @@
 
     <div class="elleme">
         <input id="gevele" placeholder="neymiş o heceleyemediğin..." autofocus/>
+        <button id="sole" data-url="">Soyle Soyleyebiliyorsan</button>
         <div class="gebe"></div>
     </div>
 
@@ -232,6 +258,7 @@
         <key>Enter</key>
         yazılanları siler.</footer>
     </div>
+    <div id="yerlestir"></div>
 </div>
 
 <link rel="stylesheet" type="text/css" href="main.css">
