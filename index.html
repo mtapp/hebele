@@ -114,18 +114,28 @@
             ln = is_console ? ["", "\n\r"] : ["<p>", "</p>"],//line plotter
             fl = is_console ? ["%c", "%c"] : ["<u>", "</u>"];//first letter styling
 
+        var urllik = "";
+
         this.split("").forEach(function (item) {
+
             item = item.replace("i", "İ").toUpperCase();
             var harf = abece[item];
-            hebelenik.push(harf[std] != ""
-                ? ln[0] + fl[0] + item + fl[1] + harf[std].substr(1) + ln[1]
-                : ln[0] + fl[0] + item.toUpperCase() + fl[1] + " :P" + ln[1]);
+
+            if (harf[std] != "") {
+                hebelenik.push(ln[0] + fl[0] + item + fl[1] + harf[std].substr(1) + ln[1]);
+            } else {
+                hebelenik.push(ln[0] + fl[0] + item.toUpperCase() + fl[1] + " :P" + ln[1]);
+            }
+
+            if (harf[std] != "") {
+                urllik += harf[std] + "+";
+            } else {
+                urllik += "oops+";
+            }
         });
 
-        var urllik = "";
-        this.toString().split(" ").forEach(function (item) {
-            urllik += item + "+";
-        });
+
+
         //https://translate.google.com/translate_tts?ie=UTF-8&tl=tr-TR&client=tw-ob&q=asd
 
         //todo nato secildiyse dil ingilizce secilmeli.
